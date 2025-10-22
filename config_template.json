@@ -1,0 +1,118 @@
+{
+  "long_term": {
+    "enabled": true,
+    "data_sources": ["cnki", "financial_reports"],
+    "analysis_types": ["keyword_extraction", "semantic_model", "network_analysis", "model_fine_tuning"],
+    "cnki_config": {
+      "api_key": "",
+      "search_keywords": ["专精特新", "小巨人", "隐形冠军", "单项冠军"],
+      "max_papers": 1000,
+      "date_range": {
+        "start": "2020-01-01",
+        "end": "2023-12-31"
+      }
+    },
+    "financial_reports_config": {
+      "data_source": "wind",
+      "stock_codes": ["000001.SZ", "000002.SZ"],
+      "report_types": ["年报", "半年报", "季报"],
+      "date_range": {
+        "start": "2020-01-01",
+        "end": "2023-12-31"
+      }
+    },
+    "keyword_extraction": {
+      "min_word_freq": 5,
+      "max_keywords": 100,
+      "domain_keywords": ["专精特新", "技术创新", "研发投入", "专利", "核心竞争力"]
+    },
+    "semantic_model": {
+      "model_type": "word2vec",
+      "vector_size": 200,
+      "window": 5,
+      "min_count": 3,
+      "epochs": 100
+    },
+    "network_analysis": {
+      "min_cooccurrence": 3,
+      "layout_algorithm": "spring",
+      "node_size_range": [10, 100],
+      "community_detection": true
+    },
+    "model_fine_tuning": {
+      "base_model": "bert-base-chinese",
+      "labeled_data_path": "数据/标注数据/",
+      "model_save_path": "模型/微调模型/",
+      "epochs": 10,
+      "batch_size": 16,
+      "learning_rate": 2e-5
+    }
+  },
+  "mid_term": {
+    "enabled": true,
+    "data_sources": ["quarterly_reports", "monthly_reports"],
+    "analysis_types": ["event_extraction", "event_encoding", "time_series_model", "expectation_gap_analysis"],
+    "event_extraction": {
+      "event_types": ["技术创新", "产品发布", "市场拓展", "战略合作", "融资活动"],
+      "min_confidence": 0.7,
+      "save_triplets": true
+    },
+    "event_encoding": {
+      "model_type": "bert",
+      "embedding_size": 768,
+      "pooling_strategy": "cls"
+    },
+    "time_series_model": {
+      "model_type": "tft",
+      "sequence_length": 30,
+      "prediction_horizon": 5,
+      "hidden_size": 64,
+      "attention_heads": 4,
+      "dropout": 0.1,
+      "epochs": 50,
+      "batch_size": 32,
+      "learning_rate": 0.001
+    },
+    "expectation_gap_analysis": {
+      "sentiment_model": "bert-base-chinese",
+      "similarity_threshold": 0.7,
+      "gap_threshold": 0.3
+    }
+  },
+  "short_term": {
+    "enabled": true,
+    "data_sources": ["news_crawler"],
+    "analysis_types": ["text_classification", "risk_control"],
+    "crawl_days": 7,
+    "max_pages": 3,
+    "news_crawler": {
+      "sources": ["巨潮资讯", "财联社", "东方财富"],
+      "keywords": ["专精特新", "小巨人", "隐形冠军", "单项冠军"],
+      "crawl_interval": 3600
+    },
+    "text_classification": {
+      "model_type": "bert",
+      "classes": ["专精特新相关", "一般新闻", "无关新闻"],
+      "threshold": 0.7
+    },
+    "risk_control": {
+      "sentiment_threshold": 0.3,
+      "anomaly_threshold": 2.0,
+      "alert_methods": ["email", "sms", "webhook"]
+    }
+  },
+  "output": {
+    "generate_report": true,
+    "save_intermediate_results": true,
+    "output_dir": "结果",
+    "report_format": "html",
+    "export_data": true
+  },
+  "system": {
+    "log_level": "INFO",
+    "parallel_processing": true,
+    "max_workers": 4,
+    "cache_enabled": true,
+    "cache_dir": "缓存"
+  }
+}

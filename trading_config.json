@@ -1,0 +1,29 @@
+{
+  "strategy_id": "news_based_trading_strategy",
+  "strategy_file": "news_trading_strategy.py",
+  "token": "{{token}}",
+  "mode": "MODE_BACKTEST",
+  "backtest_start_time": "2023-12-01 09:00:00",
+  "backtest_end_time": "2023-12-31 15:00:00",
+  "backtest_adjust": "ADJUST_PREV",
+  "backtest_initial_cash": 10000000,
+  "backtest_commission_ratio": 0.0001,
+  "backtest_slippage_ratio": 0.0001,
+  "backtest_match_mode": 1,
+  "target_symbols": [
+    "SZSE.000790",
+    "SZSE.001207",
+    "SZSE.001208",
+    "SZSE.001223",
+    "SZSE.001226",
+    "SZSE.001229",
+    "SZSE.001230",
+    "SZSE.001255",
+    "SZSE.001256",
+    "SZSE.001266"
+  ],
+  "max_position_ratio": 0.1,
+  "rebalance_frequency": "1d",
+  "news_analysis_time": "09:00:00",
+  "position_evaluation_time": "15:00:00"
+}
